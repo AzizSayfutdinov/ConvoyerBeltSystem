@@ -90,8 +90,8 @@ void myAction00() {
 
 void myAction01() {
 	printf(" StateA -> Transition01 -> StateB\n"); 
-	myStateMachine->sendEvent("Trigg1");
-	return;
+	myStateMachine->sendEvent("Trigg1");	// hier muss bei klick des KB diese Methode ausgeführt werden
+	return;									// Das heißt, dass Trigger über string gelöst werden
 }
 
 void myAction02() {
@@ -124,7 +124,7 @@ void myAction13() {
 }
 
 void myAction20() {
-	myKeyboard->getPressedKey();
+	myKeyboard->getPressedKey();	// "Do nothing" - action
 	return;
 }
 

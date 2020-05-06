@@ -40,7 +40,7 @@ Returns: 0 on succes, -1 on error, including error output
 Does: Sets the pinmux of the corresponding three IO pins to qep.
 The pinmux information has to be supplied as string in the struct qep.
 */
-extern int qepSetPinmux(qepDescriptor* qep);
+extern int qepSetPinmux(qepDescriptor* qep);	// auf GPIO setzen
 
 /*
 Function: qepGetPosition
@@ -48,7 +48,7 @@ Parameter: a struct of type qepDescriptor
 Returns: the position value (long) or -1 on error, including error output
 Does: reads the position determined by the qep encoder
 */
-extern long qepGetPosition(qepDescriptor* qep);
+extern long qepGetPosition(qepDescriptor* qep);	// positionsänderung returned
 
 /*
 Function: qepSetPeriod
@@ -56,7 +56,7 @@ Parameter: a struct of type qepDescriptor, and the period value
 Returns: 0 on succes, -1 on error, including error output
 Does: Sets the period (max. time span of the qep encoder?) to the given value in ns(?)
 */
-extern int qepSetPeriod(qepDescriptor* qep, long period);
+extern int qepSetPeriod(qepDescriptor* qep, long period);	// nicht notwendig, default auch 1sec
 
 /*
 Function: qepSetMode
@@ -64,6 +64,7 @@ Parameter: a struct of type qepDescriptor, and the mode value
 Returns: 0 on succes, -1 on error, including error output
 Does: Sets the mode to the given value (0 = absolute, 1 = relative)
 */
-extern int qepSetMode(qepDescriptor* qep, unsigned char mode);
+extern int qepSetMode(qepDescriptor* qep, unsigned char mode);		// mode abslut, mode relativ  (gegenüber vorherigem wert). Absolut geht nicht
+																	// Relativ verwenden
 
 #endif /* QEP_H_ */

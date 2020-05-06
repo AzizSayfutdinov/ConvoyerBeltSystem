@@ -14,8 +14,8 @@ As of: 2919-10-17
 
 /* 
 Connection information:
-H-bridge pin IN1 is tied to pwm7 pin A (P8_19).
-H-bridge pin IN2 is tied to pwm7 pin B (P8_13).
+H-bridge pin IN1 is tied to pwm7 pin A (P8_19). 22
+H-bridge pin IN2 is tied to pwm7 pin B (P8_13). 23
 H-bridge pin DIS is tied to GPIO2_12 (P8_39) = 76 (GPIO SW-number).
 H-bridge pin ENBL is tied to GPIO2_15 (P8_38) = 79 (GPIO SW-number).
 */
@@ -41,6 +41,9 @@ The pinmux information has to be supplied as string in the struct pwm.
 */
 extern int pwmSetPinmux_A(pwmDescriptor* pwm);
 extern int pwmSetPinmux_B(pwmDescriptor* pwm);
+// nach einem PinMUX kann man die einstellung nicht ändern
+// Wenn auf PWM gestellt, kann man GPIO nicht mehr verwendet
+// NUr die nötigen auch PWM setzen (pinMUX), die anderen mit GPIO
 
 /*
 Function: pwmOpen_A or _B

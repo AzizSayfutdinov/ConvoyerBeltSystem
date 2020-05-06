@@ -5,7 +5,5 @@ int main()
 {
     printf("hello from ConvoyerBeltSystem!\n");
 
-    testKeyBoard();
-
     return 0;
 }

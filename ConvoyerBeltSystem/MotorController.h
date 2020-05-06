@@ -1,5 +1,6 @@
 #pragma once
 #include "defines.h"
+#include <cstdio>
 
 using namespace std;
 
@@ -9,11 +10,15 @@ private:
 	double currentSpeed;
 	char currentState[MAX_STATE_NAME];
 	int currentSteps;
+	
+
 	enum MotorState
 	{
 		movingLeft, movingRight, Stop
 	};
 public:
+	int totalSteps = 0;
+
 	int followProfile(int direction);
 	int move(double speed, double time);
 	int stop(void);

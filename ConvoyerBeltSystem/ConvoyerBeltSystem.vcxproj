@@ -93,6 +93,7 @@
     <ClCompile Include="Mode.cpp" />
     <ClCompile Include="Motor.cpp" />
     <ClCompile Include="MotorController.cpp" />
+    <ClCompile Include="mySystemManager.cpp" />
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="Potentiometer.cpp" />
     <ClCompile Include="pwm.c" />
@@ -100,11 +101,14 @@
     <ClCompile Include="setMyIP.cpp" />
     <ClCompile Include="SpeedProfile.cpp" />
     <ClCompile Include="spi.c" />
+    <ClCompile Include="StateChart.cpp" />
     <ClCompile Include="stateMachine.cpp" />
     <ClCompile Include="stateTable.cpp" />
+    <ClCompile Include="systemManager.cpp" />
     <ClCompile Include="TCPClient.cpp" />
     <ClCompile Include="TCPServer.cpp" />
     <ClCompile Include="TelnetServer.cpp" />
+    <ClCompile Include="TestEvents.cpp" />
     <ClCompile Include="TestFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -127,17 +131,21 @@
     <ClInclude Include="Motor.h" />
     <ClInclude Include="MotorController.h" />
     <ClInclude Include="myFunctions.h" />
+    <ClInclude Include="mySystemManager.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Potentiometer.h" />
     <ClInclude Include="pwm.h" />
     <ClInclude Include="qep.h" />
     <ClInclude Include="SpeedProfile.h" />
     <ClInclude Include="spi.h" />
+    <ClInclude Include="StateChart.h" />
     <ClInclude Include="stateMachine.h" />
     <ClInclude Include="stateTable.h" />
+    <ClInclude Include="systemManager.h" />
     <ClInclude Include="TCPClient.h" />
     <ClInclude Include="TCPServer.h" />
     <ClInclude Include="TelnetServer.h" />
+    <ClInclude Include="TestEvents.h" />
     <ClInclude Include="TestFunctions.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">

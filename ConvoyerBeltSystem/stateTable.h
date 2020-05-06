@@ -6,6 +6,7 @@
 
 class TableEntry {
 public:
+	// ctor
 	TableEntry(	
 	std::string _actState,
 	std::string _nextState,

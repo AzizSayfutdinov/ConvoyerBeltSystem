@@ -134,3 +134,23 @@ void testKeyBoard()
 	}
 
 }
+
+void testSMProfile()
+{
+	SpeedProfile* sp = new SpeedProfile();
+	//TableEntry* tb = new TableEntry("a", "b", "c", 1, (void*)sp->addTableEntry, (void*)sp->addTableEntry);
+	//TableEntry* tb2 = new TableEntry("a", "b", "c", 1, (void*)sp->addTableEntry, (void*)sp->addTableEntry);
+	//TableEntry* tb3 = new TableEntry("a", "b", "c", 1, (void*)sp->addTableEntry, (void*)sp->addTableEntry);
+	//sp->addTableEntry(tb);
+	//sp->addTableEntry(tb2);
+	//sp->addTableEntry(tb3);
+	sp->removeLastTableEntry();
+}
+
+void testAbstractOverriddenFct()
+{
+	//LocalMode* lm = new LocalMode();
+	//ChainMode* cm = new ChainMode();
+	//lm->recv();
+	//cm->recv();
+}
