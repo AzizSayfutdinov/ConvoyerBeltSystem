@@ -5,7 +5,7 @@ int main()
 {
     printf("hello from ConvoyerBeltSystem!\n");
 
-    testKeyBoard();
+    testClassFunctionPointer();
 
     return 0;
 }

@@ -134,3 +134,64 @@ void testKeyBoard()
 	}
 
 }
+
+void testAbstractOverriddenFct()
+{
+	LocalMode* lm = new LocalMode();
+	ChainMode* cm = new ChainMode();
+	lm->recv();
+	cm->recv();
+
+	while (true) {
+
+	}
+}
+
+void testClassFunctionPointer()
+{
+	
+	// instantiate class
+	LocalMode* local = new LocalMode();
+
+	// define function pointer to class member
+	typedef void (LocalMode::*noActionPointerClass)();
+	noActionPointerClass actionPointer = &LocalMode::noAction;
+
+	cout << "Calling as a class member function pointer" << endl;
+	(local->*actionPointer)();
+
+	while (true) {
+
+	}
+
+}
+
+void testNormalFunctionPointer()
+{
+	// define function pointer
+	typedef void (*noActionFPointer)();
+	noActionFPointer pNoAction = noAction;
+
+	// calling function with function pointer
+	(*pNoAction)();
+
+}
+
+void testTableEntryWithFunctionPointer()
+{
+	LocalMode* local = new LocalMode();
+
+
+}
+
+void noAction() {
+	// Instance of used Class + call of its function
+	cout << "Calling noAction as normal function pointer with Class instance inside the normal function. " << endl;
+	LocalMode* local = new LocalMode();
+	local->noAction();
+
+	while (true) {
+
+	}
+
+}

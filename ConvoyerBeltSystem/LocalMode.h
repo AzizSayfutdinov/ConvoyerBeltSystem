@@ -1,7 +1,14 @@
 #pragma once
 #include "Mode.h"
+#include "StateChart.h"
 
-class LocalMode: public Mode
+class LocalMode: public Mode, public StateChart
 {
+private: 
+
+public: 
+	LocalMode();
+	int recv();
+	void test();
 };
 

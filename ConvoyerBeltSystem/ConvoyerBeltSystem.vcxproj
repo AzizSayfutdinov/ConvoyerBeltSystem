@@ -100,7 +100,9 @@
     <ClCompile Include="setMyIP.cpp" />
     <ClCompile Include="SpeedProfile.cpp" />
     <ClCompile Include="spi.c" />
+    <ClCompile Include="StateChart.cpp" />
     <ClCompile Include="stateMachine.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="stateTable.cpp" />
     <ClCompile Include="TCPClient.cpp" />
     <ClCompile Include="TCPServer.cpp" />
@@ -133,7 +135,9 @@
     <ClInclude Include="qep.h" />
     <ClInclude Include="SpeedProfile.h" />
     <ClInclude Include="spi.h" />
+    <ClInclude Include="StateChart.h" />
     <ClInclude Include="stateMachine.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="stateTable.h" />
     <ClInclude Include="TCPClient.h" />
     <ClInclude Include="TCPServer.h" />

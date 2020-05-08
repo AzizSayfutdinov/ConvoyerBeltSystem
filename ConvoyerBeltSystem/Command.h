@@ -22,6 +22,7 @@ public:
 
 	// functions
 	Command(string data, string src, string dest);
+	Command();
 	~Command();
 };
 

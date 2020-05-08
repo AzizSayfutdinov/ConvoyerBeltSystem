@@ -11,6 +11,5 @@ public:
 	int displayLine(string string);	// with carriage return
 	int display(int integerValue); 
 	int display(double doubleValue);
-
 };
 

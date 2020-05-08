@@ -9,6 +9,8 @@
 #include "TelnetServer.h"
 #include "TCPClient.h"
 #include "keyboard.h"
+#include "LocalMode.h"
+#include "ChainMode.h"
 
 //#include "gpio.h"
 //#include "spi.h"
@@ -31,5 +33,10 @@ void testKeyPad();
 void testPotentiometer();
 void testMotor(int dir);
 void testKeyBoard();
+void testAbstractOverriddenFct();
+void testClassFunctionPointer();
+void testNormalFunctionPointer();
+void testTableEntryWithFunctionPointer();
+void noAction();
 
 

@@ -37,6 +37,10 @@ Command::Command(string data, string src, string dest)
 	this->dest = dest; 
 }
 
+Command::Command()
+{
+}
+
 Command::~Command()
 {
 	delete this;

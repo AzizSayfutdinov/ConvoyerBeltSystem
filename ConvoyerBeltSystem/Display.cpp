@@ -1,5 +1,7 @@
 #include "Display.h"
 
+
+
 int Display::display(string string)
 {
 	cout << string;
