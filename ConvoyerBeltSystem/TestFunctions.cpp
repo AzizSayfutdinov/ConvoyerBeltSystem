@@ -149,16 +149,28 @@ void testAbstractOverriddenFct()
 
 void testClassFunctionPointer()
 {
+	// test works. 
 	
 	// instantiate class
 	LocalMode* local = new LocalMode();
 
 	// define function pointer to class member
-	typedef void (LocalMode::*noActionPointerClass)();
-	noActionPointerClass actionPointer = &LocalMode::noAction;
+	// place this typef into each corresponding class
+	typedef void (LocalMode::*testNoActionPointerClass)();
+	testNoActionPointerClass actionPointer = &LocalMode::noAction;
 
 	cout << "Calling as a class member function pointer" << endl;
 	(local->*actionPointer)();
+
+	cout << "Calling as a class member function pointer - typedef now moved to StateChart.h" << endl;
+	fpAction actionPointer2 = &LocalMode::noAction;
+	(local->*actionPointer2)();
+
+	cout << "Calling as a class member function pointer - now from LocalMode directly" << endl;
+	//fpAction actionPointer3 = &LocalMode::testAction;
+	//(local->*actionPointer2)();
+	// not possible bc fpAction points to differet class function (StateChart, not LocalMode) 
+
 
 	while (true) {
 
@@ -169,8 +181,8 @@ void testClassFunctionPointer()
 void testNormalFunctionPointer()
 {
 	// define function pointer
-	typedef void (*noActionFPointer)();
-	noActionFPointer pNoAction = noAction;
+	typedef void (*testNoActionFPointer)();
+	testNoActionFPointer pNoAction = noAction;
 
 	// calling function with function pointer
 	(*pNoAction)();
@@ -179,9 +191,17 @@ void testNormalFunctionPointer()
 
 void testTableEntryWithFunctionPointer()
 {
+	// filling TableEntry with class member function pointers not possible
+	// Not supported by the given framework
+
 	LocalMode* local = new LocalMode();
 
-
+	// create function pointers to the action/condition 
+	fpAction noAction = &LocalMode::noAction;
+	fpCondition noCondition = &LocalMode::noCondition;
+	// create table
+	// TableEntry* t = new TableEntry((__cxx11::string)"Idle", (__cxx11::string)"Local", (__cxx11::string)"RecvCmdLocal", noAction, noCondition);
+	// not possoble to pass class member functionpointer bc ctor takes in different function pointers
 }
 
 void noAction() {

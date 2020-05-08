@@ -22,5 +22,6 @@ void StateChart::noAction()
 
 bool StateChart::noCondition()
 {
+	cout << "Called noCondition of StateChart class ... returning true" << endl;
 	return true;
 }

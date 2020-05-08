@@ -10,7 +10,7 @@
 class StateManager
 {
 private: 
-	int n, m;	// determined dynamically
+	int n, m;	// to determine dynamically if possible
 	StateMachine* myStateMachine;
 	Keyboard* myKeyboard;
 

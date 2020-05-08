@@ -9,6 +9,12 @@ private:
 public: 
 	LocalMode();
 	int recv();
-	void test();
+	void testAction();
+
+
+
 };
+
+
+
 
