@@ -98,6 +98,9 @@
     <ClCompile Include="StateManager.cpp">
       <Filter>FSM framework</Filter>
     </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>FSM framework\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.h">
@@ -199,6 +202,9 @@
     <ClInclude Include="StateManager.h">
       <Filter>FSM framework</Filter>
     </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>FSM framework\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FSM framework">
@@ -242,6 +248,9 @@
     </Filter>
     <Filter Include="FSM framework\HardwareFunctions">
       <UniqueIdentifier>{cc175e9b-e054-46f9-95be-6d025468afa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM framework\State">
+      <UniqueIdentifier>{8c6bf4f0-f127-443f-a817-f2965b3fb234}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

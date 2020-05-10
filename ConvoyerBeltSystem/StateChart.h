@@ -12,6 +12,8 @@ public:
 	vector<TableEntry*>* tableEntries;
 	void addTableEntry(TableEntry* tableEntry);
 	void removeLastTableEntry();
+
+	// used for tests
 	void noAction();
 	bool noCondition();
 };

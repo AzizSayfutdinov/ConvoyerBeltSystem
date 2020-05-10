@@ -11,8 +11,9 @@ public:
 	std::string _nextState,
 	std::string _myEvent,
 	int _eventTime,
-	void (*_action)(),	// change to (StateChart::*fpAction)()
-	bool (*_condition)()
+	
+	//void (*_action)(),	// change to (StateChart::*fpAction)()
+	//bool (*_condition)()
 	);
 	std::string actState;
 	std::string nextState;

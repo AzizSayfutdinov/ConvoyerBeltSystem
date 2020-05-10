@@ -100,6 +100,7 @@
     <ClCompile Include="setMyIP.cpp" />
     <ClCompile Include="SpeedProfile.cpp" />
     <ClCompile Include="spi.c" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="StateChart.cpp" />
     <ClCompile Include="stateMachine.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="qep.h" />
     <ClInclude Include="SpeedProfile.h" />
     <ClInclude Include="spi.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="StateChart.h" />
     <ClInclude Include="stateMachine.h" />
     <ClInclude Include="StateManager.h" />
