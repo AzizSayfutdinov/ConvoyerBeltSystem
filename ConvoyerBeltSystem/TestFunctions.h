@@ -37,6 +37,7 @@ void testAbstractOverriddenFct();
 void testClassFunctionPointer();
 void testNormalFunctionPointer();
 void testTableEntryWithFunctionPointer();
+void testSMwihMemberFctFpointers();
 void noAction();
 
 

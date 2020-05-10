@@ -147,6 +147,7 @@ void testAbstractOverriddenFct()
 	}
 }
 
+
 void testClassFunctionPointer()
 {
 	// test works. 
@@ -213,5 +214,14 @@ void noAction() {
 	while (true) {
 
 	}
+
+}
+
+
+// Idea: 
+// Create 3 states: IDLE, Start, Running
+// Perform actions
+void testSMwihMemberFctFpointers()
+{
 
 }
