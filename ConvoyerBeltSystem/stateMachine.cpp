@@ -6,9 +6,11 @@
 #include "diaTimer.h"
 #include "stateTable.h"
 #include "stateMachine.h"
+#include "IdleState.h"
 
 StateMachine :: StateMachine() {
 	// Create the instance
+	currentState = new IdleState(this);		// default start state
 	return;
 }
 
@@ -76,9 +78,14 @@ void StateMachine :: runToCompletion() {
 			for (i = 0; i < lines[d]; i++) {
 				if ((actualState[d] == tab[d][i]->actState) && 
 						(actualEvent == tab[d][i]->myEvent) && 
-						((*tab[d][i]->condition)() == true)) { // Call the condition function which returns bool
+						((this->currentState->*tab[d][i]->condition)() == true)) { // Call the condition function which returns bool
 					actualState[d] = tab[d][i]->nextState;
-					(*tab[d][i]->action)(); //Call the funtion defined by pointer action
+
+
+					// (*tab[d][i]->action)(); //Call the funtion defined by pointer action
+					(this->currentState->*tab[d][i]->execute)();
+
+
 					for (j = 0; j < lines[d]; j++) {
 						if ((actualState[d] == tab[d][j]->actState) && 
 								(tab[d][j]->myEvent == (diaTimerTable[d]->timerName))) {

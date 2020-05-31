@@ -11,6 +11,7 @@
 #include "keyboard.h"
 #include "LocalMode.h"
 #include "ChainMode.h"
+#include "StateManager.h"
 
 //#include "gpio.h"
 //#include "spi.h"

@@ -6,17 +6,17 @@
 #include "keyboard.h"
 #include "stateTable.h"
 #include "myFunctions.h"
+#include <string.h>
+#include "Helpers.h"
 
 class StateManager
 {
 private: 
 	int n, m;	// to determine dynamically if possible
-	StateMachine* myStateMachine;
+	StateMachine* myStateMaschine;
 	Keyboard* myKeyboard;
 
 	LocalMode* local;
-	ChainMode* chain;
-	SpeedProfile* profile;
 
 public: 
 	StateManager();
@@ -24,5 +24,10 @@ public:
 	void init();
 	void startStateMaschine();
 
+	// for testing
+	void readKeyInputs();
+
 };
+
+
 

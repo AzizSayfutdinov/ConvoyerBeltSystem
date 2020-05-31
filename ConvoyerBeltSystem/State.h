@@ -1,8 +1,20 @@
 #pragma once
-class State
+#include "StateChart.h"
+
+class State: public StateChart
 {
 public: 
-	virtual void _action() = 0;
-	virtual bool _condition() = 0;
+	virtual void execute() = 0;
+	virtual void update() = 0;
+	virtual bool condition() = 0;
+
 };
 
+// Define class member function pointers
+typedef void (State::*fptrAction)();
+typedef bool (State::*fptrCondition)();
+
+// Notes: 
+
+// - Each derived state has to know the statemaschine
+// - Each derived state knows the next state

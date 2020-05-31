@@ -101,6 +101,9 @@
     <ClCompile Include="State.cpp">
       <Filter>FSM framework\State</Filter>
     </ClCompile>
+    <ClCompile Include="IdleState.cpp" />
+    <ClCompile Include="StartState.cpp" />
+    <ClCompile Include="RunningState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.h">
@@ -205,6 +208,9 @@
     <ClInclude Include="State.h">
       <Filter>FSM framework\State</Filter>
     </ClInclude>
+    <ClInclude Include="IdleState.h" />
+    <ClInclude Include="StartState.h" />
+    <ClInclude Include="RunningState.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FSM framework">

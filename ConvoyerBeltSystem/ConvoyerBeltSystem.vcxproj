@@ -86,6 +86,7 @@
     <ClCompile Include="gpio.c" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="ICommand.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="KeyPad.cpp" />
     <ClCompile Include="LocalMode.cpp" />
@@ -97,9 +98,11 @@
     <ClCompile Include="Potentiometer.cpp" />
     <ClCompile Include="pwm.c" />
     <ClCompile Include="qep.c" />
+    <ClCompile Include="RunningState.cpp" />
     <ClCompile Include="setMyIP.cpp" />
     <ClCompile Include="SpeedProfile.cpp" />
     <ClCompile Include="spi.c" />
+    <ClCompile Include="StartState.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateChart.cpp" />
     <ClCompile Include="stateMachine.cpp" />
@@ -123,6 +126,7 @@
     <ClInclude Include="gpio.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="ICommand.h" />
+    <ClInclude Include="IdleState.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="KeyPad.h" />
     <ClInclude Include="LocalMode.h" />
@@ -134,8 +138,10 @@
     <ClInclude Include="Potentiometer.h" />
     <ClInclude Include="pwm.h" />
     <ClInclude Include="qep.h" />
+    <ClInclude Include="RunningState.h" />
     <ClInclude Include="SpeedProfile.h" />
     <ClInclude Include="spi.h" />
+    <ClInclude Include="StartState.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateChart.h" />
     <ClInclude Include="stateMachine.h" />

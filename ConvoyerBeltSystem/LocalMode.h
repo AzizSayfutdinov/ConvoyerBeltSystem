@@ -10,11 +10,9 @@ public:
 	LocalMode();
 	int recv();
 	void testAction();
-
-
+	void idleAction();
+	void startAction();
+	void runningAction();
 
 };
-
-
-
 

@@ -16,8 +16,9 @@ public:
 	// used for tests
 	void noAction();
 	bool noCondition();
+
 };
 
-// General types pointing to actions and conditions 
+// General types pointing to actions and conditions - used for testing
 typedef void (StateChart::* fpAction)();
 typedef bool (StateChart::* fpCondition)();

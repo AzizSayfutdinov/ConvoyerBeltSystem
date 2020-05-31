@@ -223,5 +223,16 @@ void noAction() {
 // Perform actions
 void testSMwihMemberFctFpointers()
 {
+	StateManager* sm = new StateManager();
+
+	thread smThread(&StateManager::startStateMaschine, &sm);
+	thread smKeyInputsThread(&StateManager::readKeyInputs, &sm);
+
+	if (smThread.joinable()) {
+		smThread.join();
+	}
+	if (smKeyInputsThread.joinable()) {
+		smKeyInputsThread.join();
+	}
 
 }

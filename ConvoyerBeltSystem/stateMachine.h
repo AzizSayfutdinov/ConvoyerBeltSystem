@@ -8,6 +8,7 @@
 #include <semaphore.h>
 #include "diaTimer.h"
 #include "stateTable.h"
+#include "State.h"
 
 class StateMachine {
 public:
@@ -23,6 +24,10 @@ public:
 	TableEntry* tab[MAXDIA][MAXLINES];
 	std::string myEvent;
 	DiaTimer * diaTimerTable[MAXDIA];
+
+	// added
+	State* currentState;
+
 
 private:
 	sem_t semQueue, semEvent;
