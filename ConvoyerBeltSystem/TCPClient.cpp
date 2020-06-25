@@ -40,9 +40,7 @@ void TCPClient::connectToServer()
     int res = 1;
     while (res != 0) {
         res = connect(sock, (struct sockaddr*) & serverAddr, sizeof(serverAddr));
-        int b = 0;  
     }
-    int c = 0;
 
     if (res < 0)
     {
