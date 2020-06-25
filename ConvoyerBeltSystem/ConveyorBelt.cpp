@@ -28,7 +28,7 @@ void ConveyorBelt::showDisplayOutput()
 {
 	this->currentMode->display->displayClear();
 
-	//display the very top lines
+	// commands
 	for (int i = 0; i < 7; i++) {
 		this->currentMode->display->displayLine(commands[i]);
 	}
@@ -48,7 +48,6 @@ void ConveyorBelt::showDisplayOutput()
 		stringToCharArray(new string("current operation mode: " + string(data)))
 	};
 
-	// TODO: in one line: concat char*
 	for (int i = 0; i < 2; i++) {
 		this->currentMode->display->displayLine(currentOpMode[i]);
 	}

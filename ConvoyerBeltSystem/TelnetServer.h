@@ -24,6 +24,7 @@ public:
 	static TelnetServer* getInstance();
 	
 	Command* parse();
+	void send(Command* cmd);
 	void sendData(string data);
 	// void handleUserInput();
 

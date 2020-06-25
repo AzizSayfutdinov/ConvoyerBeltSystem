@@ -20,5 +20,6 @@ public:
 
 	~UserInterface();
 	Command* parse();
+	void send(Command* cmd);
 };
 

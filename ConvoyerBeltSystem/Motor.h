@@ -51,7 +51,7 @@ public:
 	gpioDescriptor* bridgeDIS;
 private:
 	unsigned short readBackValSPI;
-	int speed;
+	int speed = 1000;	// default
 	MotorState state = Stop;
 	Direction direction;
 

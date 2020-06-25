@@ -18,9 +18,6 @@ void KeyPad::handleKeyInput()
 {
 	while (true)
 	{
-		// TODO: improve
-		// use timer. Check in each case, whether a reapeated sendEvent is allowed
-		// https://en.cppreference.com/w/cpp/chrono/c/clock
 
 		// reads keyboard input and sends corresponding event
 		readValue = keyboard->getPressedKey();
@@ -48,17 +45,17 @@ void KeyPad::handleKeyInput()
 			myStateMaschine->sendEvent("RecvCmdStopMotor");
 			break;
 
-		case 'F':
+		case '5':
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdChain");
 			break;
 
-		case 'E':
+		case '6':
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdLocal");
 			break;
 
-		case 'D':
+		case '7':
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdSetSpeedPoti");
 			break;

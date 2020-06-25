@@ -29,17 +29,22 @@ Command* UserInterface::parse()
 	// Check if poti value if wanted: key = 'D'
 	// Maybe SM is not fast enough to read "D" again after sending Event upon reading it the first time (when using readKey())
 	// Fix: save read value in buffer
-	if (keyPad->getLastKeyInput() == 'D') {	
+	if (keyPad->getLastKeyInput() == '7') {	
 		receivedCommand->data = to_string(potentiometer->getSpeed());
 		receivedCommand->data = to_string(potentiometer->getSpeed());
 		receivedCommand->src = PotentiometerLocal;
 	}
 	else if (keyPad->getLastKeyInput() == '1') {	// dir = right
-		receivedCommand->data = 'r';
+		receivedCommand->data = "right";
 	} 
 	else if (keyPad->getLastKeyInput() == '2') {
-		receivedCommand->data = 'l';
+		receivedCommand->data = "left";
 	}
 	return receivedCommand;
+}
+
+void UserInterface::send(Command* cmd)
+{
+	// not avaiable
 }
 

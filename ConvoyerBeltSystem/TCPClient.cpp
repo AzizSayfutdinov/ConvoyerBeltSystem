@@ -1,10 +1,25 @@
 #include "TCPClient.h"
 
+Command* TCPClient::getCurrentCommand()
+{
+    Command* cmd = currentCommand;
+    currentCommand = new Command("", SystemLocation::NoLocation, SystemLocation::NoLocation);
+    return cmd;
+}
+
 TCPClient::TCPClient(in_addr_t serverAddress, int port)
 {
     this->IPAddress = IPAddress;
     this->port = port;
     init();
+}
+
+TCPClient::TCPClient(char* IPAddress, int port)
+{
+    this->IPAddress = inet_addr(IPAddress);
+    this->port = port;
+    init();
+
 }
 
 TCPClient::TCPClient()
@@ -41,6 +56,8 @@ void TCPClient::connectToServer()
     while (res != 0) {
         res = connect(sock, (struct sockaddr*) & serverAddr, sizeof(serverAddr));
     }
+
+    int c = 0;
 
     if (res < 0)
     {
@@ -91,16 +108,6 @@ void TCPClient::handleServerInput()
 {
     string input(buffer);
 
-    // debug
-    cout << "Received from Server (RIGHT): " << input << endl;
-
-    // TODO: Check if currentMode == ChainMode
-    // Maybe set communication to network when changing to ChainMode: NO, only makes sense if in chainmode only TCP is used
-    // myConveyorBelt->currentMode->communication = ((ChainMode*)myConveyorBelt->currentMode)->network;
-
-    // updateCommunicationType = true;
-    // !!! Replave updateCom with a check, where the package is coming from: src
-
     if (input == "REQUEST\r\n" || input == "Request\r\n" || input == "request\r\n") {
         myStateMaschine->sendEvent("RecvCmdRequest");
     }
@@ -118,7 +125,7 @@ void TCPClient::handleServerInput()
     }
     else
     {
-        // updateCommunicationType = false;
+
     }
 }
 

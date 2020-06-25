@@ -29,6 +29,11 @@ Command* TelnetServer::parse()
 
 }
 
+void TelnetServer::send(Command* cmd)
+{
+	telnetServer->sendData(cmd->data);
+}
+
 void TelnetServer::sendData(string data)
 {
 	telnetServer->sendData(data);

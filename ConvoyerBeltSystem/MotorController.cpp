@@ -33,6 +33,7 @@ int MotorController::setDirection(int direction)
 	return 0;
 }
 
+
 Direction MotorController::getConfiguredDirection()
 {
 	return myMotor->getDirection();

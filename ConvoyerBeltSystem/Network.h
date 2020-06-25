@@ -12,12 +12,12 @@ private:
 
 public: 
 
-	TCPServer* leftConveyorBelt;
+	TCPServer* server;
 	TCPClient* rightConveyorBelt;
-	TCPServer* master;
 	static Network* getInstance();
 	
 	Command* parse();
+	void send(Command* cmd);
 	void send(string data, SystemLocation src, SystemLocation dest);
 	void send(string data, SystemLocation dest);
 };

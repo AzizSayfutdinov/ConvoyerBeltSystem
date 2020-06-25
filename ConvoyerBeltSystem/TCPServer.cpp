@@ -70,14 +70,6 @@ void TCPServer::threadClientHandler()
 {
 	cout << "Connected with client. " << endl;		// use as status in Display
 
-	// TODO: Delete Greeting. Only used for debugging
-	// Greet Client!
-	// char greeting[] = "Hi Client! What's up!";
-	// send(clientSocket, greeting, sizeof(greeting) + 1, 0);
-	// int val = write(*(int*)(clientSocket), greeting, sizeof(greeting) + 1);
-	// int val = send(*((int*)(clientSocket)), greeting, sizeof(greeting) + 1, 0);
-	
-
 	while (true)
 	{
 		// empty buffer
@@ -101,56 +93,85 @@ void TCPServer::handleClientInput()
 {
 	string input(buffer);
 
-	// debug
-	// cout << "Received from Client (LEFT OR MASTER): " << input << endl;
-
-	// TODO: Check if currentMode == ChainMode
-	// Maybe set communication to network when changing to ChainMode: NO, only makes sense if in chainmode only TCP is used
-	// myConveyorBelt->currentMode->communication = ((ChainMode*)myConveyorBelt->currentMode)->network;
-	
-	// updateCommunicationType = true;
-	if (input == "REQUEST\r\n" || input == "Request\r\n" || input == "request\r\n") {
-		requestBuffer++;
-		myStateMaschine->sendEvent("RecvCmdRequest");
-	}
-	else if (input == "RELEASE\r\n" || input == "Release\r\n" || input == "release\r\n")
-	{
-		myStateMaschine->sendEvent("RecvCmdRelease");
-	}
-	else if (input == "READY\r\n" || input == "Ready\r\n" || input == "ready\r\n")
-	{
-		myStateMaschine->sendEvent("RecvCmdReady");
-	}
-	else if (input == "WAIT\r\n" || input == "Wait\r\n" || input == "wait\r\n")
-	{
-		myStateMaschine->sendEvent("RecvCmdWait");
-	}
-	else if (input == "tel start\r\n") {
-		myStateMaschine->sendEvent("RecvCmdFollowProfile");
-	}
-	else if (input == "tel stop\r\n")
-	{
-		// ADD RecvCmdStopMotor
-		// myStateMaschine->sendEvent("RecvCmdReleased");
-	}
-	else if (input.find(SPEED_CMD) != string::npos)		// check if speed command string
-	{
-		string s = input;
-		std::string delimiter = ":";
-
-		size_t pos = 0;
-		std::string token;
-		while ((pos = s.find(delimiter)) != std::string::npos) {
-			token = s.substr(0, pos);
-			s.erase(0, pos + delimiter.length());
+	if (port == TCP_PORT) {
+		if (input == "REQUEST\r\n" || input == "Request\r\n" || input == "request\r\n") {
+			requestBuffer++;
+			myStateMaschine->sendEvent("RecvCmdRequest");
 		}
-		dataBuffer = s;
-		myStateMaschine->sendEvent("RecvCmdSetSpeedTelnet");
+		else if (input == "RELEASE\r\n" || input == "Release\r\n" || input == "release\r\n")
+		{
+			myStateMaschine->sendEvent("RecvCmdRelease");
+		}
+		else if (input == "READY\r\n" || input == "Ready\r\n" || input == "ready\r\n")
+		{
+			myStateMaschine->sendEvent("RecvCmdReady");
+		}
+		else if (input == "WAIT\r\n" || input == "Wait\r\n" || input == "wait\r\n")
+		{
+			myStateMaschine->sendEvent("RecvCmdWait");
+		}
 	}
-	else if (input.find(DIR_CMD) != string::npos)		// check if speed command string
+	else if (port == TELNET_PORT) {
+		if (input == "tel start\r\n") {
+			myStateMaschine->sendEvent("RecvCmdFollowProfile");
+		}
+		else if (input == "tel stop\r\n")
+		{
+			myStateMaschine->sendEvent("RecvCmdStopMotor");
+		}
+		else if (input.find(SPEED_CMD) != string::npos)		// check if speed command string
+		{
+			string s = input;
+			std::string delimiter = " ";
+
+			size_t pos = 0;
+			std::string token;
+			while ((pos = s.find(delimiter)) != std::string::npos) {
+				token = s.substr(0, pos);
+				s.erase(0, pos + delimiter.length());
+			}
+			dataBuffer = s;
+			currentCommand = new Command(s, SystemLocation::TelnetUser, SystemLocation::Self);
+			myStateMaschine->sendEvent("RecvCmdSetSpeedTelnet");
+		}
+		else if (input.find(DIR_CMD) != string::npos)		// check if speed command string
+		{
+			string s = input;
+			std::string delimiter = " ";
+
+			size_t pos = 0;
+			std::string token;
+			while ((pos = s.find(delimiter)) != std::string::npos) {
+				token = s.substr(0, pos);
+				s.erase(0, pos + delimiter.length());
+			}
+			dataBuffer = s;
+			currentCommand = new Command(s, SystemLocation::TelnetUser, SystemLocation::Self);
+			myStateMaschine->sendEvent("RecvCmdDirectionTelnet");
+
+		}
+		else if (input.find(MODE_CMD) != string::npos)
+		{
+			string s = input;
+			std::string delimiter = " ";
+
+			size_t pos = 0;
+			std::string token;
+			while ((pos = s.find(delimiter)) != std::string::npos) {
+				token = s.substr(0, pos);
+				s.erase(0, pos + delimiter.length());
+			}
+			dataBuffer = s;
+			currentCommand = new Command(s, SystemLocation::TelnetUser, SystemLocation::Self);
+			myStateMaschine->sendEvent("RecvCmdModeTelnet");
+		}
+	}
+	
+	if (input.find(FROM_MASTER) != string::npos)
 	{
+		// read IP address
 		string s = input;
-		std::string delimiter = ":";
+		std::string delimiter = " ";
 
 		size_t pos = 0;
 		std::string token;
@@ -159,26 +180,13 @@ void TCPServer::handleClientInput()
 			s.erase(0, pos + delimiter.length());
 		}
 		dataBuffer = s;		
-		myStateMaschine->sendEvent("RecvCmdDirectionTelnet");
 
-	}
-	else if (input.find(MODE_CMD) != string::npos) 
-	{
-		string s = input;
-		std::string delimiter = ":";
+		currentCommand = new Command(s, SystemLocation::Master, SystemLocation::Self);
+		myStateMaschine->sendEvent("ConnectToRight");
 
-		size_t pos = 0;
-		std::string token;
-		while ((pos = s.find(delimiter)) != std::string::npos) {
-			token = s.substr(0, pos);
-			s.erase(0, pos + delimiter.length());
-		}
-		dataBuffer = s;
-		myStateMaschine->sendEvent("RecvCmdModeTelnet");
 	}
 	else
-	{
-		// updateCommunicationType = false;
+	{ 
 	}
 
 }
@@ -198,8 +206,15 @@ void TCPServer::acceptClients()
 		// worker thread
 		thread* clientThread;
 		clientThread = new thread(&TCPServer::threadClientHandler, this);
-		// clientThread->join();
 	}
+}
+
+Command* TCPServer::getCurrentCommand()
+{
+	Command* cmd = this->currentCommand;
+	// reset currentCommand 
+	currentCommand = new Command(to_string(requestBuffer), SystemLocation::LeftConveyorBelt, SystemLocation::Self);
+	return cmd;
 }
 
 

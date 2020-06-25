@@ -8,6 +8,7 @@
 #include <string.h>
 #include <thread>
 #include "stateMachine.h"
+#include "Command.h"
 
 #define RIGHT_CONVBELT_IP "192.168.7.1"
 #define TCP_PORT 5555
@@ -31,8 +32,11 @@ public:
 
 	// bool updateCommunicationType = false;
 	char buffer[BUF_SIZE];
+	Command* currentCommand;	// no really needed. Potential extenstion of functionality
+	Command* getCurrentCommand();
 
 	TCPClient(in_addr_t serverAddress, int port);
+	TCPClient(char* IPAddress, int port);
 	TCPClient();
 	int init();
 	void sendData(string data);

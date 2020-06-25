@@ -8,7 +8,6 @@
 #include "stateMachine.h"
 
 StateMachine :: StateMachine() {
-	printf("Statemachine Konstruktor!\n");
 	return;
 }
 
@@ -65,7 +64,6 @@ std::string StateMachine :: getEvent() {
 }
 
 void StateMachine :: runToCompletion() {
-	printf("State Machine starting...!\n");
 	std::string actualEvent;
 	int d,i,j;
 

@@ -25,7 +25,9 @@ public:
 	double getCurrentSpeedRPM();
 	int setMotorDutyCycle(int duty);
 	int enableMotorPWM();
-	Direction getConfiguredDirection();
+
+	// speed set by user
+	Direction getConfiguredDirection(); 
 	int setDirection(Direction direction);
 	MotorState getMotorState();
 	int setMotorState(MotorState state);
