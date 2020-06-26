@@ -2,6 +2,7 @@
 
 ConveyorBelt::ConveyorBelt()
 {
+	display = new Display();
 	init();
 }
 
@@ -17,23 +18,20 @@ void ConveyorBelt::stopDisplayUI()
 
 void ConveyorBelt::init()
 {
-	// Instiate local and chain mode + set local default
-	// use singleton design pattern to avoid multiple instances of local and chain mode
-	currentMode = ChainMode::getInstance();
 	currentMode = LocalMode::getInstance();
 	this->workerDisplayUI = thread(&ConveyorBelt::displayUI, this); //start thread Display UI
 }
 
 void ConveyorBelt::showDisplayOutput()
 {
-	this->currentMode->display->displayClear();
+	display->displayClear();
 
 	// commands
 	for (int i = 0; i < 7; i++) {
-		this->currentMode->display->displayLine(commands[i]);
+		display->displayLine(commands[i]);
 	}
 	for (int i = 0; i < 4; i++) {
-		this->currentMode->display->displayLine(commands2[i]);
+		display->displayLine(commands2[i]);
 	}
 
 	usleep(10000);
@@ -49,7 +47,7 @@ void ConveyorBelt::showDisplayOutput()
 	};
 
 	for (int i = 0; i < 2; i++) {
-		this->currentMode->display->displayLine(currentOpMode[i]);
+		display->displayLine(currentOpMode[i]);
 	}
 
 	char* currentState[4] = {
@@ -59,7 +57,7 @@ void ConveyorBelt::showDisplayOutput()
 		stringToCharArray(new string(myStateMaschine->actualState[0] + "\t\t\t\t" + myStateMaschine->actualState[1]))
 	};
 	for (int i = 0; i < 4; i++) {
-		this->currentMode->display->displayLine(currentState[i]);
+		display->displayLine(currentState[i]);
 	}
 
 	string dir;
@@ -90,9 +88,9 @@ void ConveyorBelt::showDisplayOutput()
 	char* motorInfo[10] = {
 		"",
 		"MOTOR PARAMETERS: ",
-		stringToCharArray(new string("defined max speed: \t" + to_string(myConveyorBelt->currentMode->motorController->getConfiguredSpeedRPM()) + "rpm")),
-		stringToCharArray(new string("direction: \t\t" + dir)),
-		stringToCharArray(new string("motor state: \t\t" + state)), 
+		stringToCharArray(new string("defined max speed: \t\t" + to_string(myConveyorBelt->currentMode->motorController->getConfiguredSpeedRPM()) + "rpm")),
+		stringToCharArray(new string("direction of local mode: \t" + dir)),
+		stringToCharArray(new string("motor state: \t\t\t" + state)), 
 		"",
 		"Note: - After starting program, select Local or Chain Mode first. ",
 		"      - Display requires longer for updates when changing operation modes. ",
@@ -100,11 +98,11 @@ void ConveyorBelt::showDisplayOutput()
 		"CURRENT ACTIONS",
 	};
 	for (int i = 0; i < 10; i++) {
-		this->currentMode->display->displayLine(motorInfo[i]);
+		display->displayLine(motorInfo[i]);
 	}
 
 	// print current action
-	this->currentMode->display->displayLine(stringToCharArray(currentAction));
+	display->displayLine(stringToCharArray(currentAction));
 
 }
 

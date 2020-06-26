@@ -13,7 +13,6 @@ private:
 
 public: 
 	MotorController* motorController;
-	Display* display;
 	ICommunication* communication;
 
 	Mode();
