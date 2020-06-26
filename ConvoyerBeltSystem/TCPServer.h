@@ -34,7 +34,6 @@ private:
 	int port = TCP_PORT;	// default
 	in_addr_t socketAddress = inet_addr(HOST_IP);	// default
 	int opt = 1;
-	int masterSocket;
 
 	int listening;
 	sockaddr_in server;
@@ -48,16 +47,12 @@ private:
 	void threadClientHandler();
 	void handleClientInput();
 	void acceptClients();
-	bool isConnected = false;
-
 
 public: 
 	char buffer[BUF_SIZE];
 	Command* currentCommand = new Command("", SystemLocation::NoLocation, SystemLocation::NoLocation);
 	Command* getCurrentCommand();
 
-	int speedBuffer = 0;
-	char dirBuffer;
 	string dataBuffer;
 	int requestBuffer = 0;
 

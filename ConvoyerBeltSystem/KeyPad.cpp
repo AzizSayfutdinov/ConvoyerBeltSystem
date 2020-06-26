@@ -1,6 +1,4 @@
 #include "KeyPad.h"
-// TODO: Check if this kind of globaal variable usage actually works correctly. 
-// MotorController* motorController;
 
 KeyPad::KeyPad()
 {
@@ -18,14 +16,11 @@ void KeyPad::handleKeyInput()
 {
 	while (true)
 	{
-
-		// reads keyboard input and sends corresponding event
 		readValue = keyboard->getPressedKey();
 
 		switch (readValue)
 		{
 		case '1':
-			// motorController->direction = 1;		// way to avoid this: add seperate event-string & action 
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdDirectionKeyPad");
 			break;
@@ -37,7 +32,7 @@ void KeyPad::handleKeyInput()
 
 		case'3':
 			lastValue = readValue;
-			myStateMaschine->sendEvent("RecvCmdFollowProfile");		// Start motor/start movement
+			myStateMaschine->sendEvent("RecvCmdFollowProfile");	
 			break;
 
 		case '4':

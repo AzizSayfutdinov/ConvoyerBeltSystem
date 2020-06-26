@@ -40,7 +40,6 @@ void Network::send(Command* cmd)
 	switch (cmd->dest)
 	{
 	case RightConveyorBelt:
-		// Concat src and dest to string: define protocol: IS THAT REALLY NEEDED? 
 		rightConveyorBelt->sendData(cmd->data);
 		break;
 	case LeftConveyorBelt:
@@ -56,7 +55,6 @@ void Network::send(string data, SystemLocation src, SystemLocation dest)
 	switch (dest)
 	{
 	case RightConveyorBelt:
-		// Concat src and dest to string: define protocol: IS THAT REALLY NEEDED? 
 		rightConveyorBelt->sendData(data);
 		break;
 	case LeftConveyorBelt:
@@ -72,7 +70,6 @@ void Network::send(string data, SystemLocation dest)
 	switch (dest)
 	{
 	case RightConveyorBelt:
-		// Concat src and dest to string: define protocol: IS THAT REALLY NEEDED? 
 		rightConveyorBelt->sendData(data);
 		break;
 	case LeftConveyorBelt:

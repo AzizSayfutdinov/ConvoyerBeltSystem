@@ -23,21 +23,11 @@ Command* LocalMode::recv()
 {
 	communication->parse();
 
-
-	// Delete later
-	//if (userInterface->updateCommunicationType) {
-	//	userInterface->parse();
-	//}
-	//else if (telnetServer->updateCommunicationType)
-	//{
-	//	telnetServer->parse();
-	//}
-
 }
 
 void LocalMode::send(Command* command)
 {
-	// send some data to telnet server
+	// possible send some data to telnet server
 	telnetServer->sendData(command->data);
 }
 

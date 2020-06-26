@@ -16,10 +16,9 @@ public:
 	SpeedProfile* mySpeedProfile;
 
 	int direction = 1;		// 1 = right & 0 = left
-	MotorController(Motor* motor, SpeedProfile* profile); //call init() and starts thread, which polls variable 'profileRunning' --> startProfile() sets the variable to true
-	//move for time 1s !!! implementieren!
+	MotorController(Motor* motor, SpeedProfile* profile); 
 	int move(Direction Direction);
-	int stop(); //resets the step counter! Neccessary to memorize step counter?!
+	int stop(); 
 	int setSpeedInRPM(int speed); 
 	int getConfiguredSpeedRPM();
 	double getCurrentSpeedRPM();
@@ -32,14 +31,10 @@ public:
 	MotorState getMotorState();
 	int setMotorState(MotorState state);
 
-	//enum MotorState
-	//{
-	//	movingLeft, movingRight, Stop
-	//};
 	MotorController();
 	
 	int setDirection(int direction);
-	int move(bool Direction); //time neccessary?
+	int move(bool Direction); 
 
 
 	int getStepCounter();

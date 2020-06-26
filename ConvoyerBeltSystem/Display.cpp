@@ -2,7 +2,6 @@
 
 Display::Display()
 {
-	// printf("Display Construktor!\n");
 	this->myConsole = new consDescriptor();
 	strncpy(myConsole->fileName, this->myConsoleName, MAX_FILENAME);
 	openConsole(myConsole);

@@ -26,9 +26,7 @@ Command* UserInterface::parse()
 	receivedCommand->data = keyPad->getLastKeyInput();
 	receivedCommand->src = KeyPadLocal;
 	receivedCommand->dest = Self;
-	// Check if poti value if wanted: key = 'D'
-	// Maybe SM is not fast enough to read "D" again after sending Event upon reading it the first time (when using readKey())
-	// Fix: save read value in buffer
+
 	if (keyPad->getLastKeyInput() == '7') {	
 		receivedCommand->data = to_string(potentiometer->getSpeed());
 		receivedCommand->data = to_string(potentiometer->getSpeed());
