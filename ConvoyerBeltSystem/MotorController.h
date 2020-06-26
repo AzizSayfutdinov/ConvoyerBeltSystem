@@ -18,6 +18,7 @@ public:
 	int direction = 1;		// 1 = right & 0 = left
 	MotorController(Motor* motor, SpeedProfile* profile); 
 	int move(Direction Direction);
+	int move(Direction direction, int speed);
 	int stop(); 
 	int setSpeedInRPM(int speed); 
 	int getConfiguredSpeedRPM();

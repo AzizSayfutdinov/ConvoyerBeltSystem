@@ -57,6 +57,13 @@ int MotorController::move(Direction direction)
 	return this->myMotor->startMotor(direction);
 }
 
+int MotorController::move(Direction direction, int speed)
+{
+	if (direction == Right) this->myMotor->setStatus(movingRight);
+	else this->myMotor->setStatus(movingLeft);
+	return this->myMotor->startMotor(direction, speed);
+}
+
 int MotorController::enableMotorPWM()
 {	
 	int err = pwmSetEnable_B(this->myMotor->pwmMotor, 1);
