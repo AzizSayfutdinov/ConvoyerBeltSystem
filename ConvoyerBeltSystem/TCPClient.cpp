@@ -108,18 +108,18 @@ void TCPClient::handleServerInput()
 {
     string input(buffer);
 
-    if (input == "REQUEST\r\n" || input == "Request\r\n" || input == "request\r\n") {
+    if (input == "Request\r\n") {
         myStateMaschine->sendEvent("RecvCmdRequest");
     }
-    else if (input == "RELEASE\r\n" || input == "Release\r\n" || input == "release\r\n")
+    else if (input == "Release\r\n")
     {
         myStateMaschine->sendEvent("RecvCmdRelease");
     }
-    else if (input == "READY\r\n" || input == "Ready\r\n" || input == "ready\r\n")
+    else if (input == "Ready\r\n")
     {
         myStateMaschine->sendEvent("RecvCmdReady");
     }
-    else if (input == "WAIT\r\n" || input == "Wait\r\n" || input == "wait\r\n")
+    else if (input == "Wait\r\n")
     {
         myStateMaschine->sendEvent("RecvCmdWait");
     }

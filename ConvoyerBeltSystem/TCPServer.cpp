@@ -70,6 +70,11 @@ void TCPServer::threadClientHandler()
 {
 	cout << "Connected with client. " << endl;		// use as status in Display
 
+	if (port == TELNET_PORT) {
+		sendData("\nWelcome to Conveyorbelt: 91.0.0.7\n");
+		sendData("-----------------------------------------------\n\n");
+	}
+
 	while (true)
 	{
 		// empty buffer
@@ -94,19 +99,19 @@ void TCPServer::handleClientInput()
 	string input(buffer);
 
 	if (port == TCP_PORT) {
-		if (input == "REQUEST\r\n" || input == "Request\r\n" || input == "request\r\n") {
+		if (input == "Request\r\n") {
 			requestBuffer++;
 			myStateMaschine->sendEvent("RecvCmdRequest");
 		}
-		else if (input == "RELEASE\r\n" || input == "Release\r\n" || input == "release\r\n")
+		else if (input == "Release\r\n")
 		{
 			myStateMaschine->sendEvent("RecvCmdRelease");
 		}
-		else if (input == "READY\r\n" || input == "Ready\r\n" || input == "ready\r\n")
+		else if (input == "Ready\r\n")
 		{
 			myStateMaschine->sendEvent("RecvCmdReady");
 		}
-		else if (input == "WAIT\r\n" || input == "Wait\r\n" || input == "wait\r\n")
+		else if (input == "Wait\r\n")
 		{
 			myStateMaschine->sendEvent("RecvCmdWait");
 		}
@@ -162,8 +167,13 @@ void TCPServer::handleClientInput()
 				s.erase(0, pos + delimiter.length());
 			}
 			dataBuffer = s;
-			currentCommand = new Command(s, SystemLocation::TelnetUser, SystemLocation::Self);
-			myStateMaschine->sendEvent("RecvCmdModeTelnet");
+			if (s == "local\r\n") {
+				myStateMaschine->sendEvent("RecvCmdLocal");
+			}
+			else if (s == "chain\r\n")
+			{
+				myStateMaschine->sendEvent("RecvCmdChain");
+			}
 		}
 	}
 	
