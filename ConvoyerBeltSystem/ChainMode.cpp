@@ -7,7 +7,7 @@ ChainMode::ChainMode():Mode()
 
 ChainMode* ChainMode::getInstance()
 {
-	if (instance == NULL) {
+	if (instance == nullptr) {
 		instance = new ChainMode();
 	}
 	return instance;

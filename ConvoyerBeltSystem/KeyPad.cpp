@@ -1,6 +1,4 @@
 #include "KeyPad.h"
-// TODO: Check if this kind of globaal variable usage actually works correctly. 
-// MotorController* motorController;
 
 KeyPad::KeyPad()
 {
@@ -18,17 +16,11 @@ void KeyPad::handleKeyInput()
 {
 	while (true)
 	{
-		// TODO: improve
-		// use timer. Check in each case, whether a reapeated sendEvent is allowed
-		// https://en.cppreference.com/w/cpp/chrono/c/clock
-
-		// reads keyboard input and sends corresponding event
 		readValue = keyboard->getPressedKey();
 
 		switch (readValue)
 		{
 		case '1':
-			// motorController->direction = 1;		// way to avoid this: add seperate event-string & action 
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdDirectionKeyPad");
 			break;
@@ -40,7 +32,7 @@ void KeyPad::handleKeyInput()
 
 		case'3':
 			lastValue = readValue;
-			myStateMaschine->sendEvent("RecvCmdFollowProfile");		// Start motor/start movement
+			myStateMaschine->sendEvent("RecvCmdFollowProfile");	
 			break;
 
 		case '4':
@@ -48,17 +40,17 @@ void KeyPad::handleKeyInput()
 			myStateMaschine->sendEvent("RecvCmdStopMotor");
 			break;
 
-		case 'F':
+		case '5':
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdChain");
 			break;
 
-		case 'E':
+		case '6':
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdLocal");
 			break;
 
-		case 'D':
+		case '7':
 			lastValue = readValue;
 			myStateMaschine->sendEvent("RecvCmdSetSpeedPoti");
 			break;

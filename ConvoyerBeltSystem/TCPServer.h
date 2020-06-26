@@ -9,10 +9,9 @@
 #include <thread>
 #include <string.h>
 #include "stateMachine.h"
+#include "Command.h"
 
 #define HOST_IP "192.168.7.2"			// telnet
-#define CONVBELT_IP "91.0.0.7"			// tcp
-
 #define TCP_PORT 5555
 #define TELNET_PORT 4444
 
@@ -20,7 +19,8 @@
 
 #define SPEED_CMD "tel speed"
 #define DIR_CMD "tel dir"
-
+#define MODE_CMD "tel mode"
+#define FROM_MASTER "Right"
 
 using namespace std;
 
@@ -31,7 +31,6 @@ private:
 	int port = TCP_PORT;	// default
 	in_addr_t socketAddress = inet_addr(HOST_IP);	// default
 	int opt = 1;
-
 
 	int listening;
 	sockaddr_in server;
@@ -45,14 +44,12 @@ private:
 	void threadClientHandler();
 	void handleClientInput();
 	void acceptClients();
-	bool isConnected = false;
-
 
 public: 
 	char buffer[BUF_SIZE];
-	// bool updateCommunicationType = false;
-	int speedBuffer = 0;
-	char dirBuffer;
+	Command* currentCommand = new Command("", SystemLocation::NoLocation, SystemLocation::NoLocation);
+	Command* getCurrentCommand();
+
 	string dataBuffer;
 	int requestBuffer = 0;
 

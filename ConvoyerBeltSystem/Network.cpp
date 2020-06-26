@@ -2,15 +2,13 @@
 
 Network::Network()
 {
-	rightConveyorBelt = new TCPClient();
-	leftConveyorBelt = new TCPServer(HOST_IP, TCP_PORT);
-	master = new TCPServer(CONVBELT_IP, TCP_PORT);
+	server = new TCPServer(HOST_IP, TCP_PORT);
 
 }
 
 Network* Network::getInstance()
 {
-	if (instance == NULL) {
+	if (instance == nullptr) {
 		instance = new Network();
 	}
 	return instance;
@@ -18,12 +16,38 @@ Network* Network::getInstance()
 
 Command* Network::parse()
 {
-	Command* receivedCommand;
-	// only reading values from left system: in order to track number of current request in the queue
-	receivedCommand = new Command(to_string(leftConveyorBelt->requestBuffer), SystemLocation::LeftConveyorBelt, Self);	
-	leftConveyorBelt->requestBuffer--;
+	Command* recvCommand = server->getCurrentCommand();
 
-	return receivedCommand;
+	if (recvCommand->src == SystemLocation::Master) {
+		return recvCommand;
+	}
+	else if (recvCommand->src == SystemLocation::LeftConveyorBelt)
+	{
+		Command* cmd = new Command(to_string(server->requestBuffer), SystemLocation::LeftConveyorBelt, SystemLocation::Self);
+		server->requestBuffer--;
+		return cmd;
+
+	}
+	else
+	{
+		return new Command("", SystemLocation::NoLocation, SystemLocation::NoLocation);
+	}
+
+}
+
+void Network::send(Command* cmd)
+{
+	switch (cmd->dest)
+	{
+	case RightConveyorBelt:
+		rightConveyorBelt->sendData(cmd->data);
+		break;
+	case LeftConveyorBelt:
+		server->sendData(cmd->data);
+		break;
+	default:
+		break;
+	}
 }
 
 void Network::send(string data, SystemLocation src, SystemLocation dest)
@@ -31,14 +55,10 @@ void Network::send(string data, SystemLocation src, SystemLocation dest)
 	switch (dest)
 	{
 	case RightConveyorBelt:
-		// Concat src and dest to string: define protocol: IS THAT REALLY NEEDED? 
 		rightConveyorBelt->sendData(data);
 		break;
 	case LeftConveyorBelt:
-		leftConveyorBelt->sendData(data);
-		break;
-	case Master:
-		master->sendData(data);
+		server->sendData(data);
 		break;
 	default:
 		break;
@@ -50,14 +70,10 @@ void Network::send(string data, SystemLocation dest)
 	switch (dest)
 	{
 	case RightConveyorBelt:
-		// Concat src and dest to string: define protocol: IS THAT REALLY NEEDED? 
 		rightConveyorBelt->sendData(data);
 		break;
 	case LeftConveyorBelt:
-		leftConveyorBelt->sendData(data);
-		break;
-	case Master:
-		master->sendData(data);
+		server->sendData(data);
 		break;
 	default:
 		break;

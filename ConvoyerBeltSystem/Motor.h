@@ -11,7 +11,6 @@
 #include "defines.h"
 #include "Encoder.h"
 #include "Controller.h"
-// #include "../ConvoyerBeltSystem/Command.h"
 
 extern "C" {
 #include "gpio.h"
@@ -36,6 +35,7 @@ public:
 	int setDirection(Direction direction);
 	Direction getDirection();
 	int startMotor(bool direction); 
+	int startMotor(bool direction, int speed);
 	int stopMotor();
 	double getCurrentSpeed();
 
@@ -43,7 +43,6 @@ public:
 
 	MotorState setStatus(MotorState motorstate);
 	MotorState getStatus();
-	//no good design, needs fixing!: 
 	gpioDescriptor* IN1;
 	pwmDescriptor* pwmMotor;
 	spiDescriptor* spiDescMotor;
@@ -51,7 +50,7 @@ public:
 	gpioDescriptor* bridgeDIS;
 private:
 	unsigned short readBackValSPI;
-	int speed;
+	int speed = 1800;	// default
 	MotorState state = Stop;
 	Direction direction;
 

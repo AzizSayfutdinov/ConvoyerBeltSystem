@@ -49,9 +49,6 @@
     <ClCompile Include="Helpers.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="TestFunctions.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>MotorController\Controller</Filter>
     </ClCompile>
@@ -154,9 +151,6 @@
       <Filter>Modes</Filter>
     </ClInclude>
     <ClInclude Include="Helpers.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="TestFunctions.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">

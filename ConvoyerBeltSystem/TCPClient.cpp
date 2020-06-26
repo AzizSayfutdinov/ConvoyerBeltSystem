@@ -1,10 +1,25 @@
 #include "TCPClient.h"
 
+Command* TCPClient::getCurrentCommand()
+{
+    Command* cmd = currentCommand;
+    currentCommand = new Command("", SystemLocation::NoLocation, SystemLocation::NoLocation);
+    return cmd;
+}
+
 TCPClient::TCPClient(in_addr_t serverAddress, int port)
 {
     this->IPAddress = IPAddress;
     this->port = port;
     init();
+}
+
+TCPClient::TCPClient(char* IPAddress, int port)
+{
+    this->IPAddress = inet_addr(IPAddress);
+    this->port = port;
+    init();
+
 }
 
 TCPClient::TCPClient()
@@ -37,7 +52,14 @@ void TCPClient::connectToServer()
 
     cout << "Searching for server ... " << endl;
 
-    if (connect(sock, (struct sockaddr*) & serverAddr, sizeof(serverAddr)) < 0)
+    int res = 1;
+    while (res != 0) {
+        res = connect(sock, (struct sockaddr*) & serverAddr, sizeof(serverAddr));
+    }
+
+    int c = 0;
+
+    if (res < 0)
     {
         cerr << "Connection Failed " << endl;
         return;
@@ -45,7 +67,6 @@ void TCPClient::connectToServer()
 
     thread* serverThread;
     serverThread = new thread(&TCPClient::threadServerHandler, this);
-    // serverThread->join();
 
 }
 
@@ -65,9 +86,9 @@ void TCPClient::threadServerHandler()
     cout << "Connected with server" << endl;
 
     // Greet Server!
-    cout << "Sending greeting to server" << endl;
-    char greeting[] = "Hi Server! This is a client ... ";
-    send(sock, greeting, sizeof(greeting) + 1, 0);
+    // cout << "Sending greeting to server" << endl;
+    // char greeting[] = "Hi Server! This is a client ... ";
+    // send(sock, greeting, sizeof(greeting) + 1, 0);
 
     while (true)
     {
@@ -87,34 +108,24 @@ void TCPClient::handleServerInput()
 {
     string input(buffer);
 
-    // debug
-    cout << "Received from Server (RIGHT): " << input << endl;
-
-    // TODO: Check if currentMode == ChainMode
-    // Maybe set communication to network when changing to ChainMode: NO, only makes sense if in chainmode only TCP is used
-    // myConveyorBelt->currentMode->communication = ((ChainMode*)myConveyorBelt->currentMode)->network;
-
-    // updateCommunicationType = true;
-    // !!! Replave updateCom with a check, where the package is coming from: src
-
-    if (input == "REQUEST\r\n" || input == "Request\r\n" || input == "request\r\n") {
+    if (input == "Request\r\n") {
         myStateMaschine->sendEvent("RecvCmdRequest");
     }
-    else if (input == "RELEASE\r\n" || input == "Release\r\n" || input == "release\r\n")
+    else if (input == "Release\r\n")
     {
         myStateMaschine->sendEvent("RecvCmdRelease");
     }
-    else if (input == "READY\r\n" || input == "Ready\r\n" || input == "ready\r\n")
+    else if (input == "Ready\r\n")
     {
         myStateMaschine->sendEvent("RecvCmdReady");
     }
-    else if (input == "WAIT\r\n" || input == "Wait\r\n" || input == "wait\r\n")
+    else if (input == "Wait\r\n")
     {
         myStateMaschine->sendEvent("RecvCmdWait");
     }
     else
     {
-        // updateCommunicationType = false;
+
     }
 }
 

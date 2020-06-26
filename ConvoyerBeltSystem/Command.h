@@ -12,7 +12,7 @@ private:
 public: 
 
 	string data;
-	SystemLocation src;		// use src for recv function: it can determined, where it came from: RIGHT or LEFT
+	SystemLocation src;		
 	SystemLocation dest;
 
 	Command(string data, SystemLocation src, SystemLocation dest);

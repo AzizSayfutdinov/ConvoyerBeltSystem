@@ -16,34 +16,32 @@ public:
 	Mode* currentMode;
 	mutex updateMutex;
 	mutex displayMutex;
+	Display* display;
+
 	string* currentAction = new string("No Actions at the moment. ");
 	void showDisplayOutput();
-
-	// void updateCurrentCommunicationType();
-	// void resetCommunicationFlags();
+	int displayUI();
 	void stopDisplayUI();
 private:
-
 	void init();
 	bool stop = false;
 	thread workerDisplayUI;
-	int displayUI();
 
 	char* commands[7] = {
 		"KEYBOARD commands: ",
-		"[F] chain mode\t [E] local mode\t [D] speed with poti",
 		"[1] right dir\t [2] left dir\t [3] start profile\t [4] stop profile",
-		"--------------------------------------------------------------------------------",
+		"[5] chain mode\t [6] local mode\t [7] speed with poti",
+		"--------------------------------------------------------------------------",
 		"TELNET commands: ",
-		"[tel start]\t [tel stop]",
-		"[tel dir:r]\t [tel dir:l] \t [tel speed:x]",
+		"[tel dir right]\t [tel dir left]\t\t [tel start]\t [tel stop]",
+		"[tel mode chain] [tel mode local]\t [tel speed value]",
 	};
 
 	char* commands2[4] = {
-		"--------------------------------------------------------------------------------",
+		"--------------------------------------------------------------------------",
 		"TCP commands: ",
-		"[request]\t [wait]\t\t [ready]\t [release]",
-		"================================================================================",
+		"[Request]\t [Wait]\t\t [Ready]\t [Release]",
+		"==========================================================================",
 	};
 
 };

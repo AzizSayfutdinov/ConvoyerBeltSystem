@@ -10,7 +10,8 @@ As of: 2919-10-17
 #include "funcs.h"
 #include <stdio.h>
 
-#define MAX_CONS_LEN 80
+// #define MAX_CONS_LEN 80
+#define MAX_CONS_LEN 200
 #define MAX_CONS_HIGH 23
 
 /* 

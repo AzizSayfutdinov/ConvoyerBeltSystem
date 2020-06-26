@@ -8,7 +8,6 @@
 #include "stateMachine.h"
 
 StateMachine :: StateMachine() {
-	printf("Statemachine Konstruktor!\n");
 	return;
 }
 
@@ -65,11 +64,11 @@ std::string StateMachine :: getEvent() {
 }
 
 void StateMachine :: runToCompletion() {
-	printf("State Machine starting...!\n");
 	std::string actualEvent;
 	int d,i,j;
 
 	while (true) {
+
 		if (sem_wait(&semEvent) != 0)
 			perror ("Sem wait"); // Wait for an event to arrive
 		actualEvent = getEvent(); // Get the event from the queue

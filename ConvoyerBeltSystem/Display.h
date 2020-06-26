@@ -12,12 +12,6 @@ extern "C" {
 class Display
 {
 public:
-	// temp solution
-	int display(string string);
-	int displayLine(string string);	// with carriage return
-	int display(int integerValue); 
-	int display(double doubleValue);
-
 	Display();
 	~Display();
 	int displayLine(char* string);

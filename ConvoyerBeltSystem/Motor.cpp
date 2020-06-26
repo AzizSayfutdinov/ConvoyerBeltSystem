@@ -1,6 +1,5 @@
 #include "Motor.h"
 
-// use this kind of ctor
 Motor::Motor()
 {
 	myEncoder = new Encoder();
@@ -103,7 +102,6 @@ int Motor::setDutyCycle(int duty)
 	int err; 
 	if (duty < 0) {
 		err = pwmSetDuty_B(this->pwmMotor, (0.01 * PWM_PER));
-		//err = this->stopMotor();
 	}
 	else
 	{	
@@ -131,10 +129,28 @@ int Motor::startMotor(bool direction)
 	else return -1;
 }
 
+int Motor::startMotor(bool direction, int speed)
+{
+	if (direction == 0) {
+		gpioSetValue(this->IN1, 1);
+		pwmSetDuty_B(this->pwmMotor, speed * PWM_PER / MAX_SPEED_RPM);
+		pwmSetEnable_B(this->pwmMotor, 1);
+		this->state = movingRight;
+		return 1;
+	}
+	else if (direction == 1) {
+		gpioSetValue(this->IN1, 0);
+		pwmSetDuty_B(this->pwmMotor, speed * PWM_PER / MAX_SPEED_RPM);
+		pwmSetEnable_B(this->pwmMotor, 1);
+		this->state = movingLeft;
+		return 1;
+	}
+	else return -1;
+}
+
 int Motor::stopMotor()
 {
 	if (pwmSetEnable_B(this->pwmMotor, 0) < 0) return -1;
-	//this->state = Stop;
 	return 0;
 }
 

@@ -14,11 +14,10 @@ private:
 
 public: 
 
-	// bool updateCommunicationType = false;
 	static UserInterface* getInstance();
-
 
 	~UserInterface();
 	Command* parse();
+	void send(Command* cmd);
 };
 
