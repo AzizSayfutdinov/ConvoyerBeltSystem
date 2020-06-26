@@ -33,8 +33,8 @@ private:
 		"[5] chain mode\t [6] local mode\t [7] speed with poti",
 		"--------------------------------------------------------------------------",
 		"TELNET commands: ",
-		"[tel dir right]\t [tel dir left]\t [tel start]\t [tel stop]",
-		"[tel mode chain] [tel mode local]\t[tel speed value]",
+		"[tel dir right]\t [tel dir left]\t\t [tel start]\t [tel stop]",
+		"[tel mode chain] [tel mode local]\t [tel speed value]",
 	};
 
 	char* commands2[4] = {

@@ -86,7 +86,7 @@ void TCPClient::threadServerHandler()
     cout << "Connected with server" << endl;
 
     // Greet Server!
-    cout << "Sending greeting to server" << endl;
+    // cout << "Sending greeting to server" << endl;
     // char greeting[] = "Hi Server! This is a client ... ";
     // send(sock, greeting, sizeof(greeting) + 1, 0);
 

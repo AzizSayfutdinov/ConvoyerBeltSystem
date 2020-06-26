@@ -108,7 +108,6 @@
     <ClCompile Include="TCPClient.cpp" />
     <ClCompile Include="TCPServer.cpp" />
     <ClCompile Include="TelnetServer.cpp" />
-    <ClCompile Include="TestFunctions.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,7 +148,6 @@
     <ClInclude Include="TCPClient.h" />
     <ClInclude Include="TCPServer.h" />
     <ClInclude Include="TelnetServer.h" />
-    <ClInclude Include="TestFunctions.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">

@@ -85,7 +85,7 @@ void ConveyorBelt::showDisplayOutput()
 		break;
 	}
 
-	char* motorInfo[10] = {
+	char* motorInfo[9] = {
 		"",
 		"MOTOR PARAMETERS: ",
 		stringToCharArray(new string("defined max speed: \t\t" + to_string(myConveyorBelt->currentMode->motorController->getConfiguredSpeedRPM()) + "rpm")),
@@ -93,11 +93,10 @@ void ConveyorBelt::showDisplayOutput()
 		stringToCharArray(new string("motor state: \t\t\t" + state)), 
 		"",
 		"Note: - After starting program, select Local or Chain Mode first. ",
-		"      - Display requires longer for updates when changing operation modes. ",
 		"================================================================================",
 		"CURRENT ACTIONS",
 	};
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 9; i++) {
 		display->displayLine(motorInfo[i]);
 	}
 

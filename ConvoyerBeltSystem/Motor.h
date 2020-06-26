@@ -43,7 +43,6 @@ public:
 
 	MotorState setStatus(MotorState motorstate);
 	MotorState getStatus();
-	//no good design, needs fixing!: 
 	gpioDescriptor* IN1;
 	pwmDescriptor* pwmMotor;
 	spiDescriptor* spiDescMotor;

@@ -68,7 +68,7 @@ int TCPServer::init()
 
 void TCPServer::threadClientHandler()
 {
-	cout << "Connected with client. " << endl;		// use as status in Display
+	cout << "\nConnected with client. " << endl;		// use as status in Display
 
 	if (port == TELNET_PORT) {
 		sendData("\nWelcome to Conveyorbelt: 91.0.0.7\n");

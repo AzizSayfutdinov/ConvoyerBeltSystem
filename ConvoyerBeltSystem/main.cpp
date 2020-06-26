@@ -1,10 +1,7 @@
 #include <cstdio>
-#include "TestFunctions.h"
 #include "MotorController.h"
 #include "ConveyorBelt.h"
-
-// needed for some tests to work (e.g. testQEP)
-MotorController* myMotorController;
+#include "StateManager.h"
 
 using namespace std;
 

@@ -29,7 +29,6 @@ int MotorController::getConfiguredSpeedRPM()
 
 int MotorController::setDirection(int direction)
 {
-	cout << "Direction set to " << direction << ". " << endl;
 	return 0;
 }
 
