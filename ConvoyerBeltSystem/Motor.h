@@ -35,6 +35,7 @@ public:
 	int setDirection(Direction direction);
 	Direction getDirection();
 	int startMotor(bool direction); 
+	int startMotor(bool direction, int speed);
 	int stopMotor();
 	double getCurrentSpeed();
 
@@ -50,7 +51,7 @@ public:
 	gpioDescriptor* bridgeDIS;
 private:
 	unsigned short readBackValSPI;
-	int speed = 1000;	// default
+	int speed = 1800;	// default
 	MotorState state = Stop;
 	Direction direction;
 
