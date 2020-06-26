@@ -27,6 +27,7 @@ Struct: kbdDescriptor
 contains descriptors of kbdOut0, kbdOut1, kbdOut2, kbdOut3 kbdIn0, kbdIn1, kbdIn2, kbdIn3;
 */
 typedef struct {
+	char version;
 	gpioDescriptor kbdOut0;
 	gpioDescriptor kbdOut1; 
 	gpioDescriptor kbdOut2; 
@@ -77,6 +78,6 @@ Parameter: a descriptor of type kbdDescriptor
 Returns: ASCII of key pressed, or 0x00 if no key was pressed
 Does: Scans the keyboard, by setting the putputs to 0 one after the other and reading the inputs
 */
-extern unsigned char getKey(kbdDescriptor* kbd);
+extern char getKey(kbdDescriptor* kbd);
 
 #endif /* GPIO_H_ */
