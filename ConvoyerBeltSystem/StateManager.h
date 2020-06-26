@@ -39,6 +39,7 @@ void setSpeedTelnet();
 void setDirectionKeyPad();
 void setDirectionTelnet();
 void followProfile();
+void followProfileChain();
 void finishedProfile();
 void stopMotor();
 void updateMotorController();
