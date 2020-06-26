@@ -20,19 +20,12 @@ StateManager::~StateManager()
 
 void StateManager::init()
 {
-	// TODO: use defines for state names
-
 	myStateMaschine = new StateMachine();
 
-	// Add LocalIdle and ChainIdle
-	// release
 	// gpio
 
 	// DEFINE STATE CHARTS
 	// Local Mode Chart
-	// myStateMaschine->tab[0][2] = new TableEntry("Chain", "IdleLocal", "Reset", 0, noAction, noCondition);	// reset to local 
-
-
 	myStateMaschine->tab[0][0] = new TableEntry("IdleLocal", "Local", "RecvCmdLocal", 0, selectLocalMode, noCondition);	// reset to local mit cmd
 	myStateMaschine->tab[0][1] = new TableEntry("Local", "IdleLocal", "RecvCmdChain", 0, selectChainMode, noCondition);	// reset to local mit cmd
 	myStateMaschine->tab[0][2] = new TableEntry("Local", "Local", "RecvCmdSetSpeedPoti", 0, setSpeedPotentiometer, noCondition);
@@ -91,19 +84,12 @@ void StateManager::init()
 
 void StateManager::startStateMaschine()
 {
-	// mtx.lock();
 	myStateMaschine->runToCompletion();
 	this_thread::sleep_for(chrono::microseconds(50));
-	// mtx.unlock();
 }
 
 // Defining global functions
 // ACTIONS
-void startLocalMode()
-{
-	myConveyorBelt->currentAction = new string("Changing from IDLE to LocalMode. ");
-	myConveyorBelt->currentMode = LocalMode::getInstance();
-}
 
 void selectLocalMode() {
 	cout << "\nChain -> Local" << endl;
@@ -416,131 +402,134 @@ bool readyToReceive()
 
 }
 
-//  ACTIONS FOR TESTING
-void noAction() {
-	// cout << "no action\n" << endl;
-}
 
 
 
-void noAction1() {
-	cout << "\nIdle --> Local" << endl;
-	cout << "No action\n" << endl;
-	return;
-}
-
-void noAction2() {
-	cout << "\nFollowProfile --> Local" << endl;
-	cout << "No action\n" << endl;
-	return;
-}
-
-void noAction3() {
-	cout << "\nLocal --> Chain" << endl;
-	cout << "No action\n" << endl;
-	return;
-}
-
-void noAction4() {
-	cout << "\nIdle --> Chain" << endl;
-	cout << "No action\n" << endl;
-	return;
-}
-
-void noAction5() {
-	cout << "\nChain --> Requested" << endl;
-	cout << "No action\n" << endl;
-	myConveyorBelt->currentMode->communication = ((ChainMode*)(myConveyorBelt->currentMode))->network;
-
-	return;
-}
-
-void actionSetSpeed1() {
-	cout << "\nLocal --> Local" << endl;
-	// motorController->setSpeed(100);		// Woher bekomme ich die Inputs? globale Variablen?
-}
-
-void actionSetSpeed2() {
-	cout << "\nChain --> Chain" << endl;
-	// motorController->setSpeed(200);
-}
-
-void actionSetDirection() {
-	cout << "\nLocal --> Local" << endl;
-	// motorController->setDirection(motorController->direction);
-}
-
-void actionFollowProfile1() {
-	cout << "\nLocal --> FollowProfile" << endl;
-	cout << "Start following profile.\n " << endl;
-}
-
-void actionFollowProfile2() {
-	cout << "\nReceivingPayload --> FollowProfile" << endl;
-	cout << "Start following profile. \n" << endl;
-}
-
-void actionSetSpeedAndSteps() {
-	cout << "\nFollowProfile --> Local" << endl;
-	// myProfile->step++;
-	cout << "Set speed and increment steps\n" << endl;;
-}
-
-void actionHandleRequest_Wait1() {
-	cout << "\nRequested --> Requested" << endl;
-	cout << "Handling reqeuest ... sending wait ... \n" << endl;
-}
-
-void actionHandleRequest_Wait2() {
-	cout << "\nReceivingPayload --> ReceivingPayload" << endl;
-	cout << "Handling reqeuest ... sending wait ... \n" << endl;
-}
-
-void actionHandleRequest_Wait3() {
-	cout << "\nFollowProfile --> FollowProfile" << endl;
-	cout << "Handling reqeuest ... sending wait ... \n" << endl;
-}
-
-void actionHandleRequest_Wait4() {
-	cout << "\nRequesting --> Requesting" << endl;
-	cout << "Handling reqeuest ... sending wait ... \n" << endl;
-}
-
-void actionHandleRequest_Ready() {
-	cout << "\nRequested --> ReceivingPayload" << endl;
-	cout << "Handling reqeuest ... sending ready ... \n" << endl;
-}
-
-void actionSendRequest() {
-	cout << "\nFollowProfile --> Requesting" << endl;
-	cout << "Sending request ... \n" << endl;
-}
-
-void actionMotorStop1() {
-	cout << "\nRequesting --> Requesting" << endl;
-	cout << "Motor stopped. \n" << endl;
-}
-
-void actionMotorStop2() {
-	cout << "\nRequesting --> Requesting" << endl;
-	cout << "Motor stopped. \n" << endl;
-}
-
-void actionMotorMove() {
-	cout << "\nPassLoad --> Chain" << endl;
-	cout << "Motor moving slowly ... \n" << endl;
-}
-
-
-// CONDITIONS
-//bool noCondition() {
-//	return true;
+////  ACTIONS FOR TESTING
+//void noAction() {
+//	// cout << "no action\n" << endl;
 //}
-
-bool conditionTotalSteps() {
-
-	// cout << "Total steps > 400 " << endl;
-	//if (myProfile->step >= 400)
-	//	return true;
-	return false;
-}
+//
+//
+//
+//void noAction1() {
+//	cout << "\nIdle --> Local" << endl;
+//	cout << "No action\n" << endl;
+//	return;
+//}
+//
+//void noAction2() {
+//	cout << "\nFollowProfile --> Local" << endl;
+//	cout << "No action\n" << endl;
+//	return;
+//}
+//
+//void noAction3() {
+//	cout << "\nLocal --> Chain" << endl;
+//	cout << "No action\n" << endl;
+//	return;
+//}
+//
+//void noAction4() {
+//	cout << "\nIdle --> Chain" << endl;
+//	cout << "No action\n" << endl;
+//	return;
+//}
+//
+//void noAction5() {
+//	cout << "\nChain --> Requested" << endl;
+//	cout << "No action\n" << endl;
+//	myConveyorBelt->currentMode->communication = ((ChainMode*)(myConveyorBelt->currentMode))->network;
+//
+//	return;
+//}
+//
+//void actionSetSpeed1() {
+//	cout << "\nLocal --> Local" << endl;
+//	// motorController->setSpeed(100);		// Woher bekomme ich die Inputs? globale Variablen?
+//}
+//
+//void actionSetSpeed2() {
+//	cout << "\nChain --> Chain" << endl;
+//	// motorController->setSpeed(200);
+//}
+//
+//void actionSetDirection() {
+//	cout << "\nLocal --> Local" << endl;
+//	// motorController->setDirection(motorController->direction);
+//}
+//
+//void actionFollowProfile1() {
+//	cout << "\nLocal --> FollowProfile" << endl;
+//	cout << "Start following profile.\n " << endl;
+//}
+//
+//void actionFollowProfile2() {
+//	cout << "\nReceivingPayload --> FollowProfile" << endl;
+//	cout << "Start following profile. \n" << endl;
+//}
+//
+//void actionSetSpeedAndSteps() {
+//	cout << "\nFollowProfile --> Local" << endl;
+//	// myProfile->step++;
+//	cout << "Set speed and increment steps\n" << endl;;
+//}
+//
+//void actionHandleRequest_Wait1() {
+//	cout << "\nRequested --> Requested" << endl;
+//	cout << "Handling reqeuest ... sending wait ... \n" << endl;
+//}
+//
+//void actionHandleRequest_Wait2() {
+//	cout << "\nReceivingPayload --> ReceivingPayload" << endl;
+//	cout << "Handling reqeuest ... sending wait ... \n" << endl;
+//}
+//
+//void actionHandleRequest_Wait3() {
+//	cout << "\nFollowProfile --> FollowProfile" << endl;
+//	cout << "Handling reqeuest ... sending wait ... \n" << endl;
+//}
+//
+//void actionHandleRequest_Wait4() {
+//	cout << "\nRequesting --> Requesting" << endl;
+//	cout << "Handling reqeuest ... sending wait ... \n" << endl;
+//}
+//
+//void actionHandleRequest_Ready() {
+//	cout << "\nRequested --> ReceivingPayload" << endl;
+//	cout << "Handling reqeuest ... sending ready ... \n" << endl;
+//}
+//
+//void actionSendRequest() {
+//	cout << "\nFollowProfile --> Requesting" << endl;
+//	cout << "Sending request ... \n" << endl;
+//}
+//
+//void actionMotorStop1() {
+//	cout << "\nRequesting --> Requesting" << endl;
+//	cout << "Motor stopped. \n" << endl;
+//}
+//
+//void actionMotorStop2() {
+//	cout << "\nRequesting --> Requesting" << endl;
+//	cout << "Motor stopped. \n" << endl;
+//}
+//
+//void actionMotorMove() {
+//	cout << "\nPassLoad --> Chain" << endl;
+//	cout << "Motor moving slowly ... \n" << endl;
+//}
+//
+//
+//// CONDITIONS
+////bool noCondition() {
+////	return true;
+////}
+//
+//bool conditionTotalSteps() {
+//
+//	// cout << "Total steps > 400 " << endl;
+//	//if (myProfile->step >= 400)
+//	//	return true;
+//	return false;
+//}
