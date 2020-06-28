@@ -3,7 +3,6 @@
 // I need these global variables so that I can access them in my global action functions
 // Tip: use prefix "my" for testing with global variables
 
-mutex mtxKeys;
 int n, m;		
 StateMachine* myStateMaschine;
 ConveyorBelt* myConveyorBelt;
@@ -108,6 +107,10 @@ void setSpeedPotentiometer()
 	Command* cmd = myConveyorBelt->currentMode->recv();
 	usleep(50000);		
 	int speed = stoi(cmd->data);
+
+	// round to nearest 100
+	speed = (speed + 50) / 100 * 100;
+
 	myConveyorBelt->currentMode->motorController->setSpeedInRPM(speed);
 	myConveyorBelt->currentAction = new string("Set speed with potentiometer. ");
 	
@@ -119,6 +122,10 @@ void setSpeedTelnet()
 	myConveyorBelt->currentMode->communication = TelnetServer::getInstance();
 	Command* cmd = myConveyorBelt->currentMode->recv();
 	int speed = stoi(cmd->data);
+
+	// round to nearest 100
+	speed = (speed + 50) / 100 * 100;
+
 	myConveyorBelt->currentMode->motorController->setSpeedInRPM(speed);
 	myConveyorBelt->currentAction = new string("Set speed to " + to_string(speed) + " rpm with telnet. ");
 

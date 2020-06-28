@@ -2,7 +2,6 @@
 #include "LocalMode.h"
 #include "ChainMode.h"
 #include "stateMachine.h"
-#include <mutex>
 #include <type_traits>
 #include "Helpers.h"
 
@@ -14,8 +13,6 @@ public:
 	ConveyorBelt();
 	~ConveyorBelt();
 	Mode* currentMode;
-	mutex updateMutex;
-	mutex displayMutex;
 	Display* display;
 
 	string* currentAction = new string("No Actions at the moment. ");

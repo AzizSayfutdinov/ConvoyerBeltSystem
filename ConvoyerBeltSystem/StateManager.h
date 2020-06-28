@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <thread>
-#include <mutex>
 #include "stateMachine.h"
 #include "keyboard.h"
 #include "Helpers.h"

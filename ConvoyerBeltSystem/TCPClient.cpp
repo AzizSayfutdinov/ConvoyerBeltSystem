@@ -39,7 +39,7 @@ int TCPClient::init()
     bzero(&serverAddr, sizeof(serverAddr));
 
     serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = inet_addr(RIGHT_CONVBELT_IP);
+    serverAddr.sin_addr.s_addr = IPAddress;
     serverAddr.sin_port = htons(TCP_PORT);
 
     // create worker thread
@@ -49,8 +49,6 @@ int TCPClient::init()
 
 void TCPClient::connectToServer()
 {
-
-    cout << "Searching for server ... " << endl;
 
     int res = 1;
     while (res != 0) {
@@ -83,12 +81,6 @@ void TCPClient::sendData(string data)
 
 void TCPClient::threadServerHandler()
 {
-    cout << "Connected with server" << endl;
-
-    // Greet Server!
-    // cout << "Sending greeting to server" << endl;
-    // char greeting[] = "Hi Server! This is a client ... ";
-    // send(sock, greeting, sizeof(greeting) + 1, 0);
 
     while (true)
     {

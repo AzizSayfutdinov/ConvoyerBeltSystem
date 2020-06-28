@@ -42,11 +42,9 @@ public:
 	int resetStepCounter();
 	int incrementStepCounter();
 	int startProfile();
-	//int updateController();
 	void oneStep();
 	int followProfile();
 	bool readyToRecvPayload();
-	bool finishedProfile();
 
 private:
 	

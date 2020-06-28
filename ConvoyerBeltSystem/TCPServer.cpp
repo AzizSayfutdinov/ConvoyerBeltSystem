@@ -68,8 +68,6 @@ int TCPServer::init()
 
 void TCPServer::threadClientHandler()
 {
-	cout << "\nConnected with client. " << endl;		// use as status in Display
-
 	if (port == TELNET_PORT) {
 		sendData("\nWelcome to Conveyorbelt: 91.0.0.7\n");
 		sendData("-----------------------------------------------\n\n");
@@ -81,7 +79,6 @@ void TCPServer::threadClientHandler()
 		memset(buffer, 0, BUF_SIZE);
 
 		// read value and save in buffer
-		// read(*((int*)(clientSocket)), buffer, BUF_SIZE);
 		recv(clientSocket, buffer, BUF_SIZE, 0);
 		
 		// handle input from client = LEFT or MASTER
@@ -206,7 +203,6 @@ void TCPServer::acceptClients()
 	while (true) {
 
 		// Accept a call
-		cout << "\nSearching for clients ... " << endl;
 		clientSize = sizeof(client);
 		clientSocket = accept(listening, (sockaddr*)&client, &clientSize);
 		if (clientSocket == -1) {

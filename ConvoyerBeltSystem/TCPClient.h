@@ -10,7 +10,6 @@
 #include "stateMachine.h"
 #include "Command.h"
 
-#define RIGHT_CONVBELT_IP "192.168.7.1"
 #define TCP_PORT 5555
 #define BUF_SIZE 128
 

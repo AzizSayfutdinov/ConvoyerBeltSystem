@@ -85,7 +85,7 @@ void ConveyorBelt::showDisplayOutput()
 		break;
 	}
 
-	char* motorInfo[9] = {
+	char* motorInfo[10] = {
 		"",
 		"MOTOR PARAMETERS: ",
 		stringToCharArray(new string("defined max speed: \t\t" + to_string(myConveyorBelt->currentMode->motorController->getConfiguredSpeedRPM()) + "rpm")),
@@ -93,10 +93,11 @@ void ConveyorBelt::showDisplayOutput()
 		stringToCharArray(new string("motor state: \t\t\t" + state)), 
 		"",
 		"Note: - After starting program, select Local or Chain Mode first. ",
+		"      - Pull down the PUTTY display vertically to see to entire display. ",
 		"================================================================================",
 		"CURRENT ACTIONS",
 	};
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < 10; i++) {
 		display->displayLine(motorInfo[i]);
 	}
 
@@ -109,11 +110,8 @@ int ConveyorBelt::displayUI()
 {
 	while (!stop)
 	{
-		// test
-		// displayMutex.lock();
 		showDisplayOutput();
-		usleep(500000);
-		// this_thread::sleep_for(chrono::milliseconds(300));		
+		usleep(400000);	
 
 	}
 	return 0;
