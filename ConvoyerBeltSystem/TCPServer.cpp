@@ -97,6 +97,8 @@ void TCPServer::handleClientInput()
 
 	if (port == TCP_PORT) {
 		if (input == "Request\r\n") {
+			// currentMOde = Chain
+			// currentComm = TCPServer;
 			requestBuffer++;
 			myStateMaschine->sendEvent("RecvCmdRequest");
 		}

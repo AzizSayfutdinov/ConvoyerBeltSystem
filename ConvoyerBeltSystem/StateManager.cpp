@@ -227,7 +227,7 @@ void handleRequest()
 {
 	myConveyorBelt->currentMode->communication = Network::getInstance();
 
-	Command* cmd = new Command("Ready", Self, LeftConveyorBelt);
+	Command* cmd = new Command("Ready\r\n", Self, LeftConveyorBelt);
 	myConveyorBelt->currentMode->send(cmd);
 	myConveyorBelt->currentAction = new string("Handling request from left conveyorbelt. ");
 	myStateMaschine->sendEvent("ReadyToRecvPayload");
@@ -237,7 +237,7 @@ void releasePayload() {
 
 	// send Event, check happens in condition
 	myConveyorBelt->currentMode->communication = Network::getInstance();
-	Command* cmd = new Command("Release", Self, LeftConveyorBelt);
+	Command* cmd = new Command("Release\r\n", Self, LeftConveyorBelt);
 	myConveyorBelt->currentMode->send(cmd);
 	myConveyorBelt->currentAction = new string("Received payload and released left conveyorbelt. ");
 	myStateMaschine->sendEvent("ReleasedPayload");
@@ -247,7 +247,7 @@ void handleRequestRepeat()
 {
 	// send back wait
 	myConveyorBelt->currentMode->communication = Network::getInstance();
-	Command* cmd = new Command("Wait", Self, LeftConveyorBelt);
+	Command* cmd = new Command("Wait\r\n", Self, LeftConveyorBelt);
 	myConveyorBelt->currentMode->send(cmd);
 	myConveyorBelt->currentAction = new string("Storing additional requests in request queue. ");
 	
@@ -283,7 +283,7 @@ void requesting()
 
 	// send request to right
 	myConveyorBelt->currentMode->communication = Network::getInstance();
-	Command* cmd = new Command("Request", Self, RightConveyorBelt);
+	Command* cmd = new Command("Request\r\n", Self, RightConveyorBelt);
 	myConveyorBelt->currentMode->send(cmd);
 
 }
