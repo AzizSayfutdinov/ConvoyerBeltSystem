@@ -49,13 +49,14 @@ void StateManager::init()
 	myStateMaschine->tab[1][9] = new TableEntry("ReceivingPayloadFinished", "ReceivingPayloadFinished", "RecvCmdRequest", 0, handleRequestRepeat, noCondition);
 	myStateMaschine->tab[1][10] = new TableEntry("ReceivingPayloadFinished", "FollowProfile", "ReleasedPayload", 0, followProfileChain, noCondition);
 	myStateMaschine->tab[1][11] = new TableEntry("FollowProfile", "FollowProfile", "Timer1", 20, updateMotorController, isProfileFinished);
-	myStateMaschine->tab[1][12] = new TableEntry("FollowProfile", "Requesting", "finishedProfile", 0, requesting, isProfileFinished);
-	myStateMaschine->tab[1][13] = new TableEntry("FollowProfile", "Chain", "RecvCmdStopMotor", 0, stopMotor, noCondition);
-	myStateMaschine->tab[1][14] = new TableEntry("Requesting", "Requesting", "RecvCmdRequest", 0, handleRequestRepeat, noCondition);
-	myStateMaschine->tab[1][15] = new TableEntry("Requesting", "Requesting", "RecvCmdWait", 0, handleWait, noCondition);
-	myStateMaschine->tab[1][16] = new TableEntry("Requesting", "Passload", "RecvCmdReady", 0, handleReady, noCondition);
-	myStateMaschine->tab[1][17] = new TableEntry("Passload", "Chain", "RecvCmdRelease", 0, checkRequestBuffer, noCondition);
-	myStateMaschine->tab[1][18] = new TableEntry("Passload", "Passload", "RecvCmdRequest", 0, handleRequestRepeat, noCondition);
+	myStateMaschine->tab[1][12] = new TableEntry("FollowProfile", "FollowProfile", "RecvCmdRequest", 0, handleRequestRepeat, noCondition);
+	myStateMaschine->tab[1][13] = new TableEntry("FollowProfile", "Requesting", "finishedProfile", 0, requesting, isProfileFinished);
+	myStateMaschine->tab[1][14] = new TableEntry("FollowProfile", "Chain", "RecvCmdStopMotor", 0, stopMotor, noCondition);
+	myStateMaschine->tab[1][15] = new TableEntry("Requesting", "Requesting", "RecvCmdRequest", 0, handleRequestRepeat, noCondition);
+	myStateMaschine->tab[1][16] = new TableEntry("Requesting", "Requesting", "RecvCmdWait", 0, handleWait, noCondition);
+	myStateMaschine->tab[1][17] = new TableEntry("Requesting", "Passload", "RecvCmdReady", 0, handleReady, noCondition);
+	myStateMaschine->tab[1][18] = new TableEntry("Passload", "Chain", "RecvCmdRelease", 0, checkRequestBuffer, noCondition);
+	myStateMaschine->tab[1][19] = new TableEntry("Passload", "Passload", "RecvCmdRequest", 0, handleRequestRepeat, noCondition);
 
 
 	// Initialize timer names for all diagrams
@@ -65,7 +66,7 @@ void StateManager::init()
 
 	// Initialize line numbers for all diagrams
 	myStateMaschine->lines[0] = 10;	
-	myStateMaschine->lines[1] = 19;
+	myStateMaschine->lines[1] = 20;
 
 	// Initialize first state for all diagrams
 	myStateMaschine->actualState[0] = "IdleLocal";
